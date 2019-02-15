@@ -7,7 +7,7 @@ import 'rxjs/add/operator/map';
 
 import { ShoppingCartService } from 'app/restaurante-detail/shopping-cart/shopping-cart.service';
 import { CartItem } from 'app/restaurante-detail/shopping-cart/cart-item.model';
-import { Order, OrderItem } from './order.model';
+import { Order } from './order.model';
 
 import { MEAT_API } from '../app.api';
 
