@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+
 import { Router } from '@angular/router';
 
 import { RadionOption } from 'app/shared/radio/radio_option.model';
@@ -12,6 +14,11 @@ import { Order, OrderItem } from 'app/order/order.model';
 })
 export class OrderComponent implements OnInit {
 
+  emailPattern = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+  numberPattern = /^[0-9]*$/;
+
+  orderForm: FormGroup;
+
   delivery = 4;
 
   paymentOptions: RadionOption[] = [
@@ -20,9 +27,35 @@ export class OrderComponent implements OnInit {
     {label: 'Cartão Refeição', value: 'REF'}
   ];
 
-  constructor(private orderService: OrderService, private router: Router) { }
+  static equalTo (group: AbstractControl): {[key: string]: boolean} {
+    const email = group.get('email');
+    const emailConfirmation = group.get('emailConfirmation');
 
-  ngOnInit() { }
+    if (!email || !emailConfirmation) {
+      return undefined;
+    }
+
+    if (email.value !== emailConfirmation.value){
+      return {emailsNoMatch: true};
+    }
+    return undefined;
+  }
+
+  constructor(private orderService: OrderService, private router: Router,
+              private formBuilder: FormBuilder) { }
+
+  ngOnInit() {
+    this.orderForm = this.formBuilder.group({
+      name: this.formBuilder.control('', [Validators.required, Validators.minLength(5)]),
+      email: this.formBuilder.control('', [Validators.required, Validators.pattern(this.emailPattern) ]),
+      emailConfirmation: this.formBuilder.control('', [Validators.required, Validators.pattern(this.emailPattern) ]),
+      address: this.formBuilder.control('', [Validators.required, Validators.minLength(5)]),
+      number: this.formBuilder.control('', [Validators.required, Validators.pattern(this.numberPattern) ]),
+      optionalAddress: this.formBuilder.control(''),
+      paymentOption: this.formBuilder.control('', [Validators.required])
+    }, {validator: OrderComponent.equalTo});
+  }
+
 
   cartItems(): CartItem[] {
     return this.orderService.cartItems();
