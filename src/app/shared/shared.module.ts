@@ -18,7 +18,7 @@ import { RestaurantesService } from 'app/restaurantes/restaurantes.service';
               CommonModule, FormsModule,  ReactiveFormsModule]
 })
 export class SharedModule {
-    static forRoot(): ModuleWithProviders{
+    static forRoot(): ModuleWithProviders {
         return {
             ngModule: SharedModule,
             providers: [OrderService, ShoppingCartService, RestaurantesService]
