@@ -17,12 +17,11 @@ export class RestaurantesService {
     constructor(private http: HttpClient) { }
 
     restaurantes(search?: string): Observable<Restaurante[]> {
-        /*let params: HttpParams = undefined;
+        let params: HttpParams = undefined;
         if (search !== null) {
             params = new HttpParams().set('q', search);
         }
-        return this.http.get<Restaurante[]>(`${MEAT_API}/restaurants`, {params: params});*/
-        return this.http.get<Restaurante[]>(`${MEAT_API}/restaurants`);
+        return this.http.get<Restaurante[]>(`${MEAT_API}/restaurants`, {params: params});
     };
 
     restauranteById(id: string): Observable<Restaurante> {

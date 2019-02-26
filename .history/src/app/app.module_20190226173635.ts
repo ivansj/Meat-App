@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http
 import { RouterModule, PreloadAllModules } from '@angular/router';
 
 import {ROUTES} from './app.routes';
@@ -18,7 +18,6 @@ import { ReviewComponent } from './restaurante-detail/review/review.component';
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
 
 import { SharedModule } from './shared/shared.module';
-
 
 @NgModule({
   declarations: [

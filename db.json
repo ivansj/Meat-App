@@ -458,6 +458,22 @@
         }
       ],
       "id": 6
+    },
+    {
+      "name": "IVAN SANTOS DE JESUS",
+      "email": "ivansj.cefet@gmail.com",
+      "emailConfirmation": "ivansj.cefet@gmail.com",
+      "address": "Edificio Oviedo Texeira - Avenida Rio Branc, 186",
+      "number": "1",
+      "optionalAddress": "",
+      "paymentOption": "MON",
+      "orderItems": [
+        {
+          "quantity": 1,
+          "menuId": "cup-cake"
+        }
+      ],
+      "id": 7
     }
   ]
 }
